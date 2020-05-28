@@ -8,3 +8,4 @@ E:\CourseWare\Graduate Course\OOAD\AHOMEWORK\SocketDocumentShareServer\SocketDoc
 E:\CourseWare\Graduate Course\OOAD\AHOMEWORK\SocketDocumentShareServer\SocketDocumentShareServer\obj\Debug\SocketDocumentShareServer.csproj.CoreCompileInputs.cache
 E:\CourseWare\Graduate Course\OOAD\AHOMEWORK\SocketDocumentShareServer\SocketDocumentShareServer\obj\Debug\SocketDocumentShareServer.exe
 E:\CourseWare\Graduate Course\OOAD\AHOMEWORK\SocketDocumentShareServer\SocketDocumentShareServer\obj\Debug\SocketDocumentShareServer.pdb
+E:\CourseWare\Graduate Course\OOAD\AHOMEWORK\SocketDocumentShareServer\SocketDocumentShareServer\obj\Debug\SocketDocumentShareServer.csproj.CopyComplete

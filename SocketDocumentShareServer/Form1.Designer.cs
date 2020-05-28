@@ -47,6 +47,7 @@
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(459, 25);
             this.textBox1.TabIndex = 1;
+            this.textBox1.TextChanged += new System.EventHandler(this.changed);
             // 
             // backgroundWorker1
             // 
@@ -68,6 +69,7 @@
             this.tbPortSend.Name = "tbPortSend";
             this.tbPortSend.Size = new System.Drawing.Size(100, 25);
             this.tbPortSend.TabIndex = 3;
+            this.tbPortSend.TextChanged += new System.EventHandler(this.changed);
             // 
             // tbPortReceive
             // 
@@ -75,6 +77,7 @@
             this.tbPortReceive.Name = "tbPortReceive";
             this.tbPortReceive.Size = new System.Drawing.Size(100, 25);
             this.tbPortReceive.TabIndex = 3;
+            this.tbPortReceive.TextChanged += new System.EventHandler(this.changed);
             // 
             // btnConfirm
             // 
@@ -110,6 +113,7 @@
             this.textBox2.Name = "textBox2";
             this.textBox2.Size = new System.Drawing.Size(394, 25);
             this.textBox2.TabIndex = 1;
+            this.textBox2.TextChanged += new System.EventHandler(this.changed);
             // 
             // label3
             // 
@@ -137,6 +141,7 @@
             this.Name = "Form1";
             this.Text = "Form1";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Form1_FormClosed);
+            this.Load += new System.EventHandler(this.Form1_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

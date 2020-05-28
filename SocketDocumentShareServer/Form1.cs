@@ -10,6 +10,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using WindowsThread;
+using SocketDocumentShareClient;
 
 namespace SocketDocumentShareServer
 {
@@ -19,6 +20,7 @@ namespace SocketDocumentShareServer
         int iServerSendPort;
         int iServerReceivePort;
         string ip;
+        bool isChanged = false;
         //ServerSocket server = new ServerSocket();
         public Form1()
         {
@@ -35,16 +37,21 @@ namespace SocketDocumentShareServer
             }
             
         }
-
+        private void changed(object sender, EventArgs e)
+        {
+            isChanged = true;
+        }
         private void btnConfirm_Click(object sender, EventArgs e)
         {
-            if(tbPortSend.Text!=null && tbPortReceive.Text!=null && textBox1.Text != null && textBox2.Text!=null)
+            if(isChanged)
             {
                 iServerSendPort = int.Parse(tbPortSend.Text);
                 iServerReceivePort = int.Parse(tbPortReceive.Text);
                 ip = textBox2.Text;
+                FileSave.WriteParams(strSavePos, iServerSendPort, iServerReceivePort, ip);
             }
-            ServerSocket server = new ServerSocket(ip,iServerReceivePort,strSavePos,"default.jpg");
+            
+            ServerSocket server = new ServerSocket(ip,iServerReceivePort,strSavePos);
             
         }
 
@@ -55,7 +62,20 @@ namespace SocketDocumentShareServer
 
         private void Form1_Load(object sender, EventArgs e)
         {
-
+            if (File.Exists("./Params.txt"))
+            {
+                string[] p = FileSave.ReadParams();
+                strSavePos = p[0];
+                iServerSendPort = int.Parse(p[1]);
+                iServerReceivePort = int.Parse(p[2]);
+                ip = p[3];
+                textBox1.Text = strSavePos;
+                textBox2.Text = ip;
+                tbPortSend.Text = iServerSendPort.ToString();
+                tbPortReceive.Text = iServerReceivePort.ToString();
+                isChanged = false;
+            }
+            Console.WriteLine(isChanged.ToString());
         }
 
         private void Form1_FormClosed(object sender, FormClosedEventArgs e)
