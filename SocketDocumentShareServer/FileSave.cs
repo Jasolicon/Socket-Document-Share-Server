@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace SocketDocumentShareServer
 {
-    class FileSave
+    public class FileSave
     {
         
         public static void toFileSave(byte[] btStream,string path,string name)

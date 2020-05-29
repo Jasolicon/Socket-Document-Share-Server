@@ -17,10 +17,10 @@ namespace WindowsThread
     
     class ServerSocket
     {
-        private Socket server;
-        private byte[] result = new byte[1024*1024*10];
+        protected Socket server;
+        protected byte[] result = new byte[1024*1024*10];
         
-        private string path;
+        protected string path;
         //private string name;
         //public ServerSocket()
         //{
@@ -43,7 +43,7 @@ namespace WindowsThread
             server.Listen(200);
             Thread t = new Thread(ListenClientConnect);
             t.Start();
-            Console.WriteLine("Server socket 建立");
+            Console.WriteLine("Server socket {0} 建立",port.ToString());
 
         }
         public void ListenClientConnect()
@@ -55,54 +55,72 @@ namespace WindowsThread
                 receiveThread.Start(client);
             }
         }
-        public void ReceiveMessage(object client)
+        public virtual void ReceiveMessage(object client)
         {
             Socket mclient = client as Socket;
             while (true)
             {
-                //try
-                //{
+                try
+                {
                     //接收数据
                     int receiveNumber = mclient.Receive(result);
                     Console.WriteLine("长度{0}", receiveNumber);
-                    if(receiveNumber == 0)
+                    if (receiveNumber == 0)
                     {
                         Console.WriteLine("未收到数据");
                         return;
                     }
-                    try 
+                    else if (receiveNumber == 1)
                     {
+                        try
+                        {
+                            FileSend fsd = new FileSend();
+                            fsd.readFolder(path);
+                            byte[] lst = fsd.EncodeFolder();
+                            mclient.Send(lst);
+                        }
+                        catch (Exception ex)
+                        {
+                            Console.WriteLine(ex);
+                            Console.WriteLine("未成功发送文件列表");
+                        }
+                    }
+                    else
+                    {
+                        try
+                        {
 
-                    //FileTransport fs = Deserialize(result) as FileTransport;
-                    FileMemeber fm = SerializeNDeserialize.Deserialize(result) as FileMemeber;
-                    FileSave.toFileSave(fm.BtFile, path, Encoding.UTF8.GetString(fm.BtFileName));
-                    //FileSave.toFileSave(result, path, "whatever.jpg");
-                        //向客户端返回信息
-                        string sendStr = "已成功收到信息";
-                        byte[] bs = Encoding.UTF8.GetBytes(sendStr);
-                        mclient.Send(bs, bs.Length, 0);
-                        //mclient.Close();
-                        Console.WriteLine("返回数据结束");
-                    }
-                    catch(Exception ex)
-                    {
-                        Console.WriteLine(ex);
-                        Console.WriteLine("未成功接收文件");
+                            //FileTransport fs = Deserialize(result) as FileTransport;
+                            FileMemeber fm = SerializeNDeserialize.Deserialize(result) as FileMemeber;
+                            FileSave.toFileSave(fm.BtFile, path, Encoding.UTF8.GetString(fm.BtFileName));
+                            //FileSave.toFileSave(result, path, "whatever.jpg");
+                            ////向客户端返回信息
+                            //string sendStr = "已成功收到信息";
+                            //byte[] bs = Encoding.UTF8.GetBytes(sendStr);
+                            //mclient.Send(bs, bs.Length, 0);
+                            ////mclient.Close();
+                            //Console.WriteLine("返回数据结束");
+                        }
+                        catch (Exception ex)
+                        {
+                            Console.WriteLine(ex);
+                            Console.WriteLine("未成功接收文件");
+                        }
                     }
                     
                     
-                //}
-                //catch(Exception ex)
-                //{
-                //    Console.WriteLine(ex.Message);
-                //    //mclient.Shutdown(SocketShutdown.Both);//禁止发送和上传
-                //    //mclient.Close();
-                //    break;
-                //}
-                //finally
-                //{
-                //    mclient.Close();
-                //}
+                }
+                catch(Exception ex)
+                {
+                    Console.WriteLine(ex.Message);
+                    //mclient.Shutdown(SocketShutdown.Both);//禁止发送和上传
+                    //mclient.Close();
+                    break;
+                }
+                finally
+                {
+                    mclient.Close();
+                }
             }
         }
 
@@ -110,10 +128,63 @@ namespace WindowsThread
     class ServerSocketSend : ServerSocket
     {
         public ServerSocketSend(string ip, int port, string p) : base(ip, port, p) { }
-        public void SendMessage(object client)
+
+
+        public override void ReceiveMessage(object client)
         {
-            Socket socket = client as Socket;
-            
+            Socket mclient = client as Socket;
+            byte[] btPathReturned = new byte[1024];
+            while (true)
+            {
+                try
+                {
+                    //接收数据
+                    int receiveNumber = mclient.Receive(result);
+                    Console.WriteLine("长度{0}", receiveNumber);
+                    if (receiveNumber == 0)
+                    {
+                        Console.WriteLine("未收到数据");
+                        return;
+                    }
+                    else if (receiveNumber == 1)
+                    {
+                        try
+                        {
+                            FileSend fsd = new FileSend();
+                            fsd.readFolder(path);
+                            byte[] lst = fsd.EncodeFolder();
+                            mclient.Send(lst);
+                        }
+                        catch (Exception ex)
+                        {
+                            Console.WriteLine(ex);
+                            Console.WriteLine("未成功发送文件列表");
+                        }
+                    }
+                    else
+                    {
+                        try
+                        {
+                            //mclient.Receive(btPathReturned);
+                            string fileNameReceived = Encoding.UTF8.GetString(result);
+                            Console.WriteLine("路径{0}",fileNameReceived);
+                            FileTransport ft = new FileTransport(Path.GetFileName(fileNameReceived), fileNameReceived);
+                            FileMemeber fm = new FileMemeber(ft);
+                            mclient.Send(SerializeNDeserialize.Serialize(fm));
+                        }
+                        catch (Exception ex)
+                        {
+                            Console.WriteLine("传输文件失败{0}", ex);
+                        }
+                    }
+                }
+                catch
+                {
+                    Console.WriteLine("返回客户端失败");
+                    break;
+                }
+
+            }
         }
     }
 }

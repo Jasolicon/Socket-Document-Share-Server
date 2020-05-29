@@ -10,6 +10,8 @@ using SocketDocumentShareClient;
 
 namespace SocketDocumentShareServer
 {
+    //发送文件名，文件
+    
     class FileSend
     {
         string[] strFilesPath = new string[100];
@@ -18,7 +20,7 @@ namespace SocketDocumentShareServer
             
         }
 
-        private int readFolder(string strPath)
+        public int readFolder(string strPath)
         {
             int i = 0;
             DirectoryInfo f = new DirectoryInfo(strPath);
@@ -32,9 +34,16 @@ namespace SocketDocumentShareServer
         }
         public byte[] EncodeFolder()
         {
-            byte[] btFolder = new byte[1024];
-            btFolder = SerializeNDeserialize.Serialize(strFilesPath);
+            // btFolder = new byte[1024*5];
+            byte[] btFolder = SerializeNDeserialize.Serialize(strFilesPath);
             return btFolder;
         }
     }
+
+    [Serializable]
+    class SerFileSend
+    {
+        public SerFileSend() { }
+    }
+
 }

@@ -52,6 +52,7 @@ namespace SocketDocumentShareServer
             }
             
             ServerSocket server = new ServerSocket(ip,iServerReceivePort,strSavePos);
+            ServerSocketSend serverSend = new ServerSocketSend(ip, iServerSendPort, strSavePos);
             
         }
 

@@ -1,11 +1,11 @@
-E:\CourseWare\Graduate Course\OOAD\AHOMEWORK\SocketDocumentShareServer\SocketDocumentShareServer\bin\Debug\SocketDocumentShareServer.exe.config
-E:\CourseWare\Graduate Course\OOAD\AHOMEWORK\SocketDocumentShareServer\SocketDocumentShareServer\bin\Debug\SocketDocumentShareServer.exe
 E:\CourseWare\Graduate Course\OOAD\AHOMEWORK\SocketDocumentShareServer\SocketDocumentShareServer\bin\Debug\SocketDocumentShareServer.pdb
-E:\CourseWare\Graduate Course\OOAD\AHOMEWORK\SocketDocumentShareServer\SocketDocumentShareServer\obj\Debug\SocketDocumentShareServer.csprojAssemblyReference.cache
 E:\CourseWare\Graduate Course\OOAD\AHOMEWORK\SocketDocumentShareServer\SocketDocumentShareServer\obj\Debug\SocketDocumentShareServer.Form1.resources
 E:\CourseWare\Graduate Course\OOAD\AHOMEWORK\SocketDocumentShareServer\SocketDocumentShareServer\obj\Debug\SocketDocumentShareServer.Properties.Resources.resources
 E:\CourseWare\Graduate Course\OOAD\AHOMEWORK\SocketDocumentShareServer\SocketDocumentShareServer\obj\Debug\SocketDocumentShareServer.csproj.GenerateResource.cache
 E:\CourseWare\Graduate Course\OOAD\AHOMEWORK\SocketDocumentShareServer\SocketDocumentShareServer\obj\Debug\SocketDocumentShareServer.csproj.CoreCompileInputs.cache
-E:\CourseWare\Graduate Course\OOAD\AHOMEWORK\SocketDocumentShareServer\SocketDocumentShareServer\obj\Debug\SocketDocumentShareServer.exe
 E:\CourseWare\Graduate Course\OOAD\AHOMEWORK\SocketDocumentShareServer\SocketDocumentShareServer\obj\Debug\SocketDocumentShareServer.pdb
 E:\CourseWare\Graduate Course\OOAD\AHOMEWORK\SocketDocumentShareServer\SocketDocumentShareServer\obj\Debug\SocketDocumentShareServer.csproj.CopyComplete
+E:\CourseWare\Graduate Course\OOAD\AHOMEWORK\SocketDocumentShareServer\SocketDocumentShareServer\bin\Debug\SocketDocumentShareServer.exe.config
+E:\CourseWare\Graduate Course\OOAD\AHOMEWORK\SocketDocumentShareServer\SocketDocumentShareServer\bin\Debug\SocketDocumentShareServer.exe
+E:\CourseWare\Graduate Course\OOAD\AHOMEWORK\SocketDocumentShareServer\SocketDocumentShareServer\obj\Debug\SocketDocumentShareServer.exe
+E:\CourseWare\Graduate Course\OOAD\AHOMEWORK\SocketDocumentShareServer\SocketDocumentShareServer\obj\Debug\SocketDocumentShareServer.csprojAssemblyReference.cache
